@@ -168,15 +168,32 @@
       text-align: center;
     }
     .hero-logo {
+      position: relative;
       width: min(620px, 88vw);
       aspect-ratio: 1.85;
+      overflow: hidden;
       margin-bottom: 32px;
       padding: 8px;
       border: 1px solid rgba(255,255,255,.62);
       background: rgba(255,255,255,.035);
     }
-    .hero-logo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .hero h1 { max-width: 850px; margin-bottom: 0; font-size: clamp(3.2rem, 8vw, 6.7rem); letter-spacing: -.035em; }
+    .hero-logo img {
+      position: absolute;
+      inset: 8px;
+      width: calc(100% - 16px);
+      height: calc(100% - 16px);
+      object-fit: cover;
+      object-position: center top;
+    }
+    .hero-prefix, .hero h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 8vw, 6.7rem);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -.035em;
+    }
+    .hero h1 { max-width: 850px; }
     .hero h1::after {
       display: block;
       width: 150px;
@@ -262,7 +279,7 @@
     .history-grid img { width: 100%; aspect-ratio: 1.12; object-fit: cover; border: 1px solid var(--line); filter: saturate(.82); transition: filter .35s ease, transform .5s ease; }
     .history-grid img:hover { filter: saturate(1); transform: translateY(-4px); }
 
-    .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; }
+    .visit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 70px; }
     .visit-copy > p:not(.eyebrow) { color: var(--muted); }
     .visit-details { display: grid; gap: 22px; margin: 30px 0; }
     .detail { padding-top: 17px; border-top: 1px solid var(--line); }
@@ -272,7 +289,6 @@
     .detail address { font-style: normal; }
     .map-button { flex: 0 0 auto; min-height: 44px; padding: 10px 14px; border-color: var(--white); background: var(--white); color: var(--navy); font-size: .74rem; }
     .map-button:hover { border-color: var(--white); background: transparent; color: var(--white); }
-    .visit-photo { width: 100%; height: 100%; min-height: 400px; object-fit: cover; border: 1px solid var(--line); }
     .social-box { margin-top: 30px; padding: 22px; border: 1px solid var(--line); }
     .social-box-title { margin: 0 0 16px; color: var(--white); font-size: .73rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
     .social-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
@@ -342,6 +358,7 @@
       .hero { min-height: min(760px, 100svh); }
       .hero-content { padding-block: 145px 74px; }
       .hero-logo { width: min(480px, 88vw); aspect-ratio: 1.65; margin-bottom: 24px; padding: 6px; }
+      .hero-logo img { inset: 6px; width: calc(100% - 12px); height: calc(100% - 12px); }
       .hero-subtitle { max-width: 300px; margin-bottom: 26px; font-size: 1rem; }
       .intro-grid, .visit-grid { grid-template-columns: 1fr; gap: 36px; }
       .menu-languages { grid-template-columns: 1fr; gap: 16px; }
@@ -352,7 +369,6 @@
       .food-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
       .food-grid img { min-height: 150px; }
       .history-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
-      .visit-photo { min-height: 300px; }
       .detail-location { align-items: flex-start; gap: 10px; }
       .map-button { padding-inline: 11px; font-size: .7rem; white-space: nowrap; }
       .social-box { padding: 18px 14px; }
@@ -365,7 +381,7 @@
       .brand span { font-size: .95rem; }
       .brand small { font-size: .54rem; }
       .language-toggle { width: 46px; min-width: 46px; height: 36px; }
-      .hero h1 { font-size: clamp(2.8rem, 13vw, 4.1rem); }
+      .hero-prefix, .hero h1 { font-size: clamp(2.8rem, 13vw, 4.1rem); }
       .social-links { gap: 16px; }
     }
   </style>
@@ -396,8 +412,9 @@
     <section class="hero" id="inizio">
       <div class="wrap hero-content reveal">
         <div class="hero-logo">
-          <img src="https://files.supersite.aruba.it/media/11586_e2f84a479063ee2eec5829c885f2ca5263114428.jpeg/v1/w_1556,h_0/dscf6812.jpeg" alt="Il ristorante Il Delfino Verde" data-i18n-alt="heroImage">
+          <img src="images/ristorante-esterno.jpg" alt="Il ristorante Il Delfino Verde" data-i18n-alt="heroImage">
         </div>
+        <p class="hero-prefix" data-i18n="heroPrefix">Ristorante</p>
         <h1>Il Delfino Verde</h1>
           <p class="hero-subtitle" data-i18n="heroSubtitle">Pesce fresco e atmosfera famigliare</p>
         <a class="button button-light" href="#menu" data-i18n="heroCta">Scopri il nostro menù</a>
@@ -462,7 +479,6 @@
         <div class="food-grid">
           <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_de855249d5c109c715d484492a927ad71e633a39.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.03.14%20-%20copia.jpeg" alt="Un piatto di pesce della cucina del ristorante" data-i18n-alt="foodImage1" loading="lazy"></figure>
           <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_a415464325e91ae7e84148da65a4b907088c8cf6.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.03.49.jpeg" alt="Una delle specialità di mare" data-i18n-alt="foodImage2" loading="lazy"></figure>
-          <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_02e389a83a590a313e7aa98c4f47fc77b266c963.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.30.04.jpeg" alt="Un piatto preparato dal ristorante" data-i18n-alt="foodImage3" loading="lazy"></figure>
           <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_96f039c275e2ad8751c838a9ace73dc9ceb71d4f.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.29.24.jpeg" alt="Una proposta della cucina di pesce" data-i18n-alt="foodImage4" loading="lazy"></figure>
           <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_0c5c015b319bda4d6836b481ee7185b78702dd68.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.22.20.jpeg" alt="Un piatto della tradizione di mare" data-i18n-alt="foodImage5" loading="lazy"></figure>
           <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_e594775126b4c12dbeb0ef8d1d79bf1fcb916c28.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.26.33.jpeg" alt="Una specialità di pesce fresco" data-i18n-alt="foodImage6" loading="lazy"></figure>
@@ -474,7 +490,6 @@
     <section class="section history">
       <div class="wrap">
         <div class="section-heading reveal">
-          <p class="eyebrow" data-i18n="historyEyebrow">La memoria del ristorante</p>
           <h2 data-i18n="historyTitle">Foto storiche</h2>
         </div>
         <div class="history-grid">
@@ -509,7 +524,6 @@
             </div>
           </div>
         </div>
-        <img class="visit-photo reveal" src="https://files.supersite.aruba.it/media/11586_baf2566b2bf5231ee4c3c28e2387df2b492247d2.jpeg/v1/w_0,h_581/img-20230901-wa0003.jpeg" alt="La costa di Lavagna, vicino al ristorante" data-i18n-alt="coastImage" loading="lazy">
       </div>
     </section>
   </main>
@@ -541,6 +555,7 @@
           menuOpen: "Apri il menu",
           menuClose: "Chiudi il menu",
           heroImage: "Il ristorante Il Delfino Verde",
+          heroPrefix: "Ristorante",
           heroSubtitle: "Pesce fresco e atmosfera famigliare",
           heroCta: "Scopri il nostro menù",
           introEyebrow: "Una storia di mare",
@@ -568,12 +583,10 @@
           foodDescription: "Pesce fresco e sapori da condividere, con il mare di Lavagna sullo sfondo.",
           foodImage1: "Un piatto di pesce della cucina del ristorante",
           foodImage2: "Una delle specialità di mare",
-          foodImage3: "Un piatto preparato dal ristorante",
           foodImage4: "Una proposta della cucina di pesce",
           foodImage5: "Un piatto della tradizione di mare",
           foodImage6: "Una specialità di pesce fresco",
           foodImage7: "Un piatto servito al Delfino Verde",
-          historyEyebrow: "La memoria del ristorante",
           historyTitle: "Foto storiche",
           historyImage1: "Foto storica del ristorante",
           historyImage2: "Lavagna in una fotografia d'epoca",
@@ -585,7 +598,6 @@
           closedDay: "Martedì",
           phoneLabel: "Telefono",
           socialTitle: "Seguici e contattaci",
-          coastImage: "La costa di Lavagna, vicino al ristorante",
           reviewLink: "Lascia una recensione",
           switchLabel: "Switch to English"
         },
@@ -600,6 +612,7 @@
           menuOpen: "Open menu",
           menuClose: "Close menu",
           heroImage: "Il Delfino Verde restaurant",
+          heroPrefix: "Restaurant",
           heroSubtitle: "Fresh seafood, a warm welcome",
           heroCta: "Explore our menu",
           introEyebrow: "A story by the sea",
@@ -627,12 +640,10 @@
           foodDescription: "Fresh seafood and generous flavours, with Lavagna’s seafront just beyond.",
           foodImage1: "A seafood dish from the restaurant kitchen",
           foodImage2: "One of our seafood specialities",
-          foodImage3: "A dish prepared by the kitchen",
           foodImage4: "A seafood dish from our menu",
           foodImage5: "A taste of traditional Ligurian cooking",
           foodImage6: "A fresh seafood speciality",
           foodImage7: "A dish served at Il Delfino Verde",
-          historyEyebrow: "A little history",
           historyTitle: "Memories through the years",
           historyImage1: "A historic photo of the restaurant",
           historyImage2: "Lavagna in days gone by",
@@ -644,7 +655,6 @@
           closedDay: "Tuesday",
           phoneLabel: "Phone",
           socialTitle: "Follow us & get in touch",
-          coastImage: "The Lavagna seafront, just steps from the restaurant",
           reviewLink: "Leave us a review",
           switchLabel: "Passa all'italiano"
         }
