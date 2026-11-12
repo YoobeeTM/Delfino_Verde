@@ -294,29 +294,13 @@
     }
     .food-grid figure:hover img { transform: scale(1.055); }
     .food-grid figure:hover::after { inset: 10px; border-color: rgba(255,255,255,.65); }
-    .food-carousel-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px; }
-    .carousel-button {
-      display: grid;
-      width: 44px;
-      height: 44px;
-      place-items: center;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--white);
-      font: 1.15rem/1 var(--sans);
-      cursor: pointer;
-      transition: border-color .2s ease, background .2s ease, color .2s ease;
-    }
-    .carousel-button:hover { border-color: var(--white); background: var(--white); color: var(--navy); }
-    .carousel-status { min-width: 48px; color: var(--muted); font-size: .78rem; font-variant-numeric: tabular-nums; text-align: center; }
-
     .history { background: var(--navy); }
     .history-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .history-grid img { width: 100%; aspect-ratio: 1.12; object-fit: cover; border: 1px solid var(--line); filter: saturate(.82); transition: filter .35s ease, transform .5s ease; }
     .history-grid img:hover { filter: saturate(1); transform: translateY(-4px); }
 
     .reviews-section { background: var(--navy); }
-    .reviews-layout { display: grid; grid-template-columns: minmax(190px, .65fr) minmax(0, 1.35fr); align-items: center; gap: 28px; }
+    .reviews-layout { display: grid; grid-template-columns: minmax(190px, .5fr) minmax(0, 1.5fr); align-items: center; gap: 28px; }
     .reviews-summary { display: grid; justify-items: center; align-content: center; gap: 10px; text-align: center; }
     .review-average-label { margin: 0; color: var(--white); font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
     .review-rating { color: var(--white); font-family: var(--serif); font-size: 2.6rem; font-weight: 400; line-height: 1; white-space: nowrap; }
@@ -336,7 +320,7 @@
     .reviews-carousel { min-width: 0; }
     .review-track { display: flex; gap: 14px; margin: 0; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; touch-action: pan-x; }
     .review-track::-webkit-scrollbar { display: none; }
-    .review-card { display: flex; flex: 0 0 calc((100% - 14px) / 2); min-height: 250px; flex-direction: column; padding: 22px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.035); scroll-snap-align: start; }
+    .review-card { display: flex; flex: 0 0 calc((100% - 14px) / 2); min-height: 320px; flex-direction: column; padding: 22px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.035); scroll-snap-align: start; }
     .review-card-header { display: grid; grid-template-columns: 42px minmax(0, 1fr) 24px; align-items: center; gap: 12px; margin-bottom: 18px; }
     .review-avatar { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 50%; background: rgba(255,255,255,.14); color: var(--white); font-size: .95rem; font-weight: 700; }
     .review-avatar--teal { background: #008f9d; }
@@ -345,7 +329,16 @@
     .reviewer-meta cite { overflow: hidden; color: var(--white); font-size: .84rem; font-style: normal; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
     .reviewer-meta span { color: var(--muted); font-size: .72rem; }
     .google-mark { background: conic-gradient(from -45deg, #4285f4 0 25%, #34a853 25% 44%, #fbbc05 44% 64%, #ea4335 64% 82%, #4285f4 82% 100%); background-clip: text; color: transparent; font-family: Arial, sans-serif; font-size: 1.4rem; font-weight: 700; line-height: 1; text-decoration: none; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .review-card-rating { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; }
+    .review-card-stars { color: #fbbc04; font-size: 1rem; letter-spacing: .03em; line-height: 1; white-space: nowrap; }
+    .review-age { color: var(--muted); font-size: .72rem; white-space: nowrap; }
     .review-card-copy { flex: 1; margin: 0; color: var(--white); font-size: .88rem; line-height: 1.7; }
+    .review-read-link { align-self: flex-start; margin-top: 16px; color: var(--muted); font-size: .74rem; text-decoration-color: var(--line); text-underline-offset: 3px; }
+    .review-read-link:hover { color: var(--white); }
+
+    @media (min-width: 1100px) {
+      .review-card { flex-basis: calc((100% - 28px) / 3); }
+    }
 
     .visit-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: start; gap: 48px; }
     .visit-copy > p:not(.eyebrow) { color: var(--muted); }
@@ -559,19 +552,13 @@
           <h2 data-i18n="foodTitle">Il mare, alla nostra maniera</h2>
         </div>
         <div class="food-carousel reveal" role="region" aria-roledescription="carosello" aria-label="Galleria dei piatti" data-i18n-role="foodCarouselRole" data-i18n-aria="foodCarouselLabel">
-          <div class="food-grid" id="food-track">
+          <div class="food-grid" id="food-track" tabindex="0" aria-live="off">
             <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="1 di 6"><img src="https://files.supersite.aruba.it/media/11586_de855249d5c109c715d484492a927ad71e633a39.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.03.14%20-%20copia.jpeg" alt="Un piatto di pesce della cucina del ristorante" data-i18n-alt="foodImage1" loading="lazy"></figure>
             <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="2 di 6"><img src="https://files.supersite.aruba.it/media/11586_a415464325e91ae7e84148da65a4b907088c8cf6.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.03.49.jpeg" alt="Una delle specialità di mare" data-i18n-alt="foodImage2" loading="lazy"></figure>
             <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="3 di 6"><img src="https://files.supersite.aruba.it/media/11586_96f039c275e2ad8751c838a9ace73dc9ceb71d4f.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.29.24.jpeg" alt="Una proposta della cucina di pesce" data-i18n-alt="foodImage4" loading="lazy"></figure>
             <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="4 di 6"><img src="https://files.supersite.aruba.it/media/11586_0c5c015b319bda4d6836b481ee7185b78702dd68.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.22.20.jpeg" alt="Un piatto della tradizione di mare" data-i18n-alt="foodImage5" loading="lazy"></figure>
             <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="5 di 6"><img src="https://files.supersite.aruba.it/media/11586_e594775126b4c12dbeb0ef8d1d79bf1fcb916c28.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.26.33.jpeg" alt="Una specialità di pesce fresco" data-i18n-alt="foodImage6" loading="lazy"></figure>
             <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="6 di 6"><img src="https://files.supersite.aruba.it/media/11586_94795fc9f6f083380b08f5466ab33f5d57081e29.jpeg/v1/w_470,h_470/img-20240324-wa0001.jpeg" alt="Un piatto servito al Delfino Verde" data-i18n-alt="foodImage7" loading="lazy"></figure>
-          </div>
-          <div class="food-carousel-controls" role="group" aria-label="Controlli del carosello" data-i18n-aria="foodCarouselControls">
-            <button class="carousel-button" type="button" data-carousel-previous aria-label="Foto precedenti" data-i18n-aria="previousFoodSlides"><span aria-hidden="true">←</span></button>
-            <span class="carousel-status" data-carousel-status aria-live="off" aria-atomic="true">1 / 2</span>
-            <button class="carousel-button" type="button" data-carousel-toggle aria-label="Metti in pausa lo scorrimento automatico"><span aria-hidden="true">Ⅱ</span></button>
-            <button class="carousel-button" type="button" data-carousel-next aria-label="Foto successive" data-i18n-aria="nextFoodSlides"><span aria-hidden="true">→</span></button>
           </div>
         </div>
       </div>
@@ -596,7 +583,6 @@
         <div class="section-heading reveal">
           <p class="eyebrow" data-i18n="reviewsEyebrow">Recensioni Google</p>
           <h2 id="reviews-title" data-i18n="reviewsTitle">Le parole dei nostri ospiti</h2>
-          <p data-i18n="reviewsIntro">Alcune impressioni condivise pubblicamente su Google.</p>
         </div>
         <div class="reviews-layout">
           <div class="reviews-summary reveal">
@@ -608,33 +594,138 @@
               <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
             </a>
             <a class="review-all-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewsLink">Leggi tutte le recensioni su Google ↗</a>
-            <p class="review-note" data-i18n="reviewsNote">Valutazione e conteggio rilevati a novembre 2026; possono variare. I testi delle schede sono sintesi originali, non citazioni letterali.</p>
           </div>
           <div class="reviews-carousel reveal" role="region" aria-roledescription="carosello" aria-label="Recensioni Google" data-i18n-role="reviewsCarouselRole" data-i18n-aria="reviewsCarouselLabel">
             <div class="review-track" id="review-track" tabindex="0">
               <article class="review-card">
                 <div class="review-card-header">
-                  <span class="review-avatar review-avatar--plum" aria-hidden="true">E</span>
-                  <div class="reviewer-meta"><cite>Eleonora P.</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <span class="review-avatar review-avatar--plum" aria-hidden="true">AS</span>
+                  <div class="reviewer-meta"><cite>Alessandro Sbizzera</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
                   <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
                 </div>
-                <p class="review-card-copy" data-i18n="googleReview1">Una cena apprezzata per il buon cibo, il personale sorridente e il vino della casa; gli ospiti dicono che torneranno.</p>
+                <div class="review-card-rating">
+                  <span class="review-card-stars" role="img" aria-label="Valutazione: 5 stelle su 5" data-i18n-aria="reviewStarsAria">★★★★★</span>
+                  <time class="review-age" data-i18n="reviewAge2Months">2 mesi fa</time>
+                </div>
+                <blockquote class="review-card-copy" data-i18n="reviewText1">Cibo sempre fresco e cucinato perfettamente! Personale molto cortese e attento. Proprietario disponibilissimo, gentile ed attento. Molto consigliato.…</blockquote>
+                <a class="review-read-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewReadLink">Leggi su Google ↗</a>
               </article>
               <article class="review-card">
                 <div class="review-card-header">
-                  <span class="review-avatar review-avatar--teal" aria-hidden="true">IC</span>
-                  <div class="reviewer-meta"><cite>IC</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <span class="review-avatar review-avatar--teal" aria-hidden="true">CR</span>
+                  <div class="reviewer-meta"><cite>Carmen Righetti</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
                   <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
                 </div>
-                <p class="review-card-copy" data-i18n="googleReview2">Una serata all'aperto con pesce fresco, resa ancora più piacevole da una chiacchierata con il proprietario sulla storia del ristorante.</p>
+                <div class="review-card-rating">
+                  <span class="review-card-stars" role="img" aria-label="Valutazione: 5 stelle su 5" data-i18n-aria="reviewStarsAria">★★★★★</span>
+                  <time class="review-age" data-i18n="reviewAge1Year">un anno fa</time>
+                </div>
+                <blockquote class="review-card-copy" data-i18n="reviewText2">Scelto il locale in quanto consigliato da amici cena con 4 cugine. Davvero tutto eccellente e location molto elegante. Proprietario simpatico brillante e …</blockquote>
+                <a class="review-read-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewReadLink">Leggi su Google ↗</a>
               </article>
               <article class="review-card">
                 <div class="review-card-header">
-                  <span class="review-avatar" aria-hidden="true">L</span>
-                  <div class="reviewer-meta"><cite>Luana A.</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <span class="review-avatar" aria-hidden="true">MK</span>
+                  <div class="reviewer-meta"><cite>Manjola Kapri</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
                   <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
                 </div>
-                <p class="review-card-copy" data-i18n="googleReview3">Un commento entusiasta apprezza la cucina e il servizio spettacolare del ristorante.</p>
+                <div class="review-card-rating">
+                  <span class="review-card-stars" role="img" aria-label="Valutazione: 5 stelle su 5" data-i18n-aria="reviewStarsAria">★★★★★</span>
+                  <time class="review-age" data-i18n="reviewAge6Months">6 mesi fa</time>
+                </div>
+                <blockquote class="review-card-copy" data-i18n="reviewText3">pesce fresco e cucinato con cura. Servizio cordiale e ospitale. …</blockquote>
+                <a class="review-read-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewReadLink">Leggi su Google ↗</a>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-avatar review-avatar--plum" aria-hidden="true">RR</span>
+                  <div class="reviewer-meta"><cite>Roberta R.</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
+                </div>
+                <div class="review-card-rating">
+                  <span class="review-card-stars" role="img" aria-label="Valutazione: 5 stelle su 5" data-i18n-aria="reviewStarsAria">★★★★★</span>
+                  <time class="review-age" data-i18n="reviewAge1Month">1 mese fa</time>
+                </div>
+                <blockquote class="review-card-copy" data-i18n="reviewText4">Ottimo ristorante di pesce, con una bella vetrina di pescato da scegliere per essere preparato alla ligure…</blockquote>
+                <a class="review-read-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewReadLink">Leggi su Google ↗</a>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-avatar review-avatar--teal" aria-hidden="true">IZ</span>
+                  <div class="reviewer-meta"><cite>Ivana Zini “Ivy”</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
+                </div>
+                <div class="review-card-rating">
+                  <span class="review-card-stars" role="img" aria-label="Valutazione: 5 stelle su 5" data-i18n-aria="reviewStarsAria">★★★★★</span>
+                  <time class="review-age" data-i18n="reviewAge3Years">3 anni fa</time>
+                </div>
+                <blockquote class="review-card-copy" data-i18n="reviewText5">Una scoperta... due volte due giorni di seguito. Gentilezza e disponibilità di tutto il personale, ma un ringraziamento particolare al proprietario Mohamed per …</blockquote>
+                <a class="review-read-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewReadLink">Leggi su Google ↗</a>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-avatar" aria-hidden="true">JR</span>
+                  <div class="reviewer-meta"><cite>Jolanda Restano</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
+                </div>
+                <div class="review-card-rating">
+                  <span class="review-card-stars" role="img" aria-label="Valutazione: 5 stelle su 5" data-i18n-aria="reviewStarsAria">★★★★★</span>
+                  <time class="review-age" data-i18n="reviewAge4Years">4 anni fa</time>
+                </div>
+                <blockquote class="review-card-copy" data-i18n="reviewText6">Ero in una tavolata di amici che hanno mangiato solo portate a base di pesce (che io non mangio) e sono stati molto soddisfatti. Le mie linguine al pesto erano ottime. Anche i dolci si difendono bene. Personale gentile e disponibile.</blockquote>
+                <a class="review-read-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewReadLink">Leggi su Google ↗</a>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-avatar review-avatar--plum" aria-hidden="true">AM</span>
+                  <div class="reviewer-meta"><cite>Alberto Molteni</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
+                </div>
+                <div class="review-card-rating">
+                  <span class="review-card-stars" role="img" aria-label="Valutazione: 5 stelle su 5" data-i18n-aria="reviewStarsAria">★★★★★</span>
+                  <time class="review-age" data-i18n="reviewAge4Months">4 mesi fa</time>
+                </div>
+                <blockquote class="review-card-copy" data-i18n="reviewText7">Ottimo ristorante! Cibo molto buono,personale gentile e ambiente calmo! Complimenti alla cucina!!!…</blockquote>
+                <a class="review-read-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewReadLink">Leggi su Google ↗</a>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-avatar review-avatar--teal" aria-hidden="true">VF</span>
+                  <div class="reviewer-meta"><cite>Vittoria Ferrera Bruna</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
+                </div>
+                <div class="review-card-rating">
+                  <span class="review-card-stars" role="img" aria-label="Valutazione: 5 stelle su 5" data-i18n-aria="reviewStarsAria">★★★★★</span>
+                  <time class="review-age" data-i18n="reviewAge2Years">2 anni fa</time>
+                </div>
+                <blockquote class="review-card-copy" data-i18n="reviewText8">Questo ristorante è perfetto. Il cibo è buonissimo, il servizio anche meglio.. cordiali, simpatici, amano il loro lavoro. Prezzo giusto.. anzi, ho speso di piu …</blockquote>
+                <a class="review-read-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewReadLink">Leggi su Google ↗</a>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-avatar" aria-hidden="true">LA</span>
+                  <div class="reviewer-meta"><cite>Luana Allegri</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
+                </div>
+                <div class="review-card-rating">
+                  <span class="review-card-stars" role="img" aria-label="Valutazione: 5 stelle su 5" data-i18n-aria="reviewStarsAria">★★★★★</span>
+                  <time class="review-age" data-i18n="reviewAge3Months">3 mesi fa</time>
+                </div>
+                <blockquote class="review-card-copy" data-i18n="reviewText9">ottimo posto si mangia benissimo servizio spettacolare…</blockquote>
+                <a class="review-read-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewReadLink">Leggi su Google ↗</a>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <span class="review-avatar review-avatar--plum" aria-hidden="true">MB</span>
+                  <div class="reviewer-meta"><cite>Mara Barbieri</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
+                </div>
+                <div class="review-card-rating">
+                  <span class="review-card-stars" role="img" aria-label="Valutazione: 5 stelle su 5" data-i18n-aria="reviewStarsAria">★★★★★</span>
+                  <time class="review-age" data-i18n="reviewAge5Years">5 anni fa</time>
+                </div>
+                <blockquote class="review-card-copy" data-i18n="reviewText10">Ristorante sul mare a conduzione familiare. Ottima ospitalità e gentilezza del personale ed anche il rapporto qualità - prezzo. Mangiato veramente molto bene, tornerò sicuramente</blockquote>
+                <a class="review-read-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewReadLink">Leggi su Google ↗</a>
               </article>
             </div>
           </div>
@@ -694,12 +785,10 @@
       const foodSlides = Array.from(foodTrack.querySelectorAll(".food-slide"));
       const reviewsCarousel = document.querySelector(".reviews-carousel");
       const reviewsTrack = document.querySelector("#review-track");
-      const carouselStatus = foodCarousel.querySelector("[data-carousel-status]");
-      const carouselToggle = foodCarousel.querySelector("[data-carousel-toggle]");
       let carouselPage = 0;
       let carouselTimer = 0;
       let carouselScrollTimeout = 0;
-      let carouselAutoplayEnabled = !reducedMotion;
+      const carouselAutoplayEnabled = !reducedMotion;
       let carouselInView = !("IntersectionObserver" in window);
       let carouselPointerInside = false;
       let carouselHasFocus = false;
@@ -748,11 +837,6 @@
           foodTitle: "Il mare, alla nostra maniera",
           foodCarouselRole: "carosello",
           foodCarouselLabel: "Galleria dei piatti",
-          foodCarouselControls: "Controlli del carosello",
-          previousFoodSlides: "Foto precedenti",
-          nextFoodSlides: "Foto successive",
-          pauseCarousel: "Metti in pausa lo scorrimento automatico",
-          playCarousel: "Avvia lo scorrimento automatico",
           foodImage1: "Un piatto di pesce della cucina del ristorante",
           foodImage2: "Una delle specialità di mare",
           foodImage4: "Una proposta della cucina di pesce",
@@ -766,18 +850,35 @@
           historyImage4: "Un ricordo della storia del ristorante",
           reviewsEyebrow: "Recensioni Google",
           reviewsTitle: "Le parole dei nostri ospiti",
-          reviewsIntro: "Alcune impressioni condivise pubblicamente su Google.",
           reviewAverageLabel: "Valutazione media",
           googleReviewCount: "538 recensioni su Google",
           reviewsLink: "Leggi tutte le recensioni su Google ↗",
           reviewsLinkAria: "Leggi tutte le recensioni del ristorante su Google",
           reviewSourceLabel: "Recensione Google",
-          reviewsNote: "Valutazione e conteggio rilevati a novembre 2026; possono variare. I testi delle schede sono sintesi originali, non citazioni letterali.",
+          reviewReadLink: "Leggi su Google ↗",
+          reviewStarsAria: "Valutazione: 5 stelle su 5",
+          reviewAge2Months: "2 mesi fa",
+          reviewAge1Year: "un anno fa",
+          reviewAge6Months: "6 mesi fa",
+          reviewAge1Month: "1 mese fa",
+          reviewAge3Years: "3 anni fa",
+          reviewAge4Years: "4 anni fa",
+          reviewAge4Months: "4 mesi fa",
+          reviewAge2Years: "2 anni fa",
+          reviewAge3Months: "3 mesi fa",
+          reviewAge5Years: "5 anni fa",
           reviewsCarouselRole: "carosello",
           reviewsCarouselLabel: "Recensioni Google",
-          googleReview1: "Una cena apprezzata per il buon cibo, il personale sorridente e il vino della casa; gli ospiti dicono che torneranno.",
-          googleReview2: "Una serata all'aperto con pesce fresco, resa ancora più piacevole da una chiacchierata con il proprietario sulla storia del ristorante.",
-          googleReview3: "Un commento entusiasta apprezza la cucina e il servizio spettacolare del ristorante.",
+          reviewText1: "Cibo sempre fresco e cucinato perfettamente! Personale molto cortese e attento. Proprietario disponibilissimo, gentile ed attento. Molto consigliato.…",
+          reviewText2: "Scelto il locale in quanto consigliato da amici cena con 4 cugine. Davvero tutto eccellente e location molto elegante. Proprietario simpatico brillante e …",
+          reviewText3: "pesce fresco e cucinato con cura. Servizio cordiale e ospitale. …",
+          reviewText4: "Ottimo ristorante di pesce, con una bella vetrina di pescato da scegliere per essere preparato alla ligure…",
+          reviewText5: "Una scoperta... due volte due giorni di seguito. Gentilezza e disponibilità di tutto il personale, ma un ringraziamento particolare al proprietario Mohamed per …",
+          reviewText6: "Ero in una tavolata di amici che hanno mangiato solo portate a base di pesce (che io non mangio) e sono stati molto soddisfatti. Le mie linguine al pesto erano ottime. Anche i dolci si difendono bene. Personale gentile e disponibile.",
+          reviewText7: "Ottimo ristorante! Cibo molto buono,personale gentile e ambiente calmo! Complimenti alla cucina!!!…",
+          reviewText8: "Questo ristorante è perfetto. Il cibo è buonissimo, il servizio anche meglio.. cordiali, simpatici, amano il loro lavoro. Prezzo giusto.. anzi, ho speso di piu …",
+          reviewText9: "ottimo posto si mangia benissimo servizio spettacolare…",
+          reviewText10: "Ristorante sul mare a conduzione familiare. Ottima ospitalità e gentilezza del personale ed anche il rapporto qualità - prezzo. Mangiato veramente molto bene, tornerò sicuramente",
           locationLabel: "Dove siamo",
           mapLink: "Apri la mappa",
           mapFrameTitle: "Mappa interattiva del ristorante Il Delfino Verde a Lavagna",
@@ -827,11 +928,6 @@
           foodTitle: "A taste of the sea",
           foodCarouselRole: "carousel",
           foodCarouselLabel: "Seafood dishes",
-          foodCarouselControls: "Seafood carousel controls",
-          previousFoodSlides: "Previous photos",
-          nextFoodSlides: "Next photos",
-          pauseCarousel: "Pause automatic slide show",
-          playCarousel: "Resume automatic slide show",
           foodImage1: "A seafood dish from the restaurant kitchen",
           foodImage2: "One of our seafood specialities",
           foodImage4: "A seafood dish from our menu",
@@ -845,18 +941,35 @@
           historyImage4: "A glimpse into the restaurant’s past",
           reviewsEyebrow: "Google Reviews",
           reviewsTitle: "What our guests say",
-          reviewsIntro: "A selection of impressions shared publicly on Google.",
           reviewAverageLabel: "Average rating",
           googleReviewCount: "538 Google reviews",
           reviewsLink: "Read all reviews on Google ↗",
           reviewsLinkAria: "Read all restaurant reviews on Google",
           reviewSourceLabel: "Google review",
-          reviewsNote: "Rating and count checked in November 2026; they may change. Card text is an original summary, not a verbatim review.",
+          reviewReadLink: "Read on Google ↗",
+          reviewStarsAria: "Rating: 5 out of 5 stars",
+          reviewAge2Months: "2 months ago",
+          reviewAge1Year: "1 year ago",
+          reviewAge6Months: "6 months ago",
+          reviewAge1Month: "1 month ago",
+          reviewAge3Years: "3 years ago",
+          reviewAge4Years: "4 years ago",
+          reviewAge4Months: "4 months ago",
+          reviewAge2Years: "2 years ago",
+          reviewAge3Months: "3 months ago",
+          reviewAge5Years: "5 years ago",
           reviewsCarouselRole: "carousel",
           reviewsCarouselLabel: "Google reviews",
-          googleReview1: "Guests praised the food, smiling staff and house wine, and said they would gladly return.",
-          googleReview2: "A pleasant outdoor dinner with fresh fish, made more memorable by a conversation with the owner about the restaurant's history.",
-          googleReview3: "A glowing review praised the restaurant's cooking and spectacular service.",
+          reviewText1: "The food is always fresh and perfectly cooked! The staff are very courteous and attentive. The owner is extremely helpful, kind and attentive. Highly recommended.…",
+          reviewText2: "We chose the restaurant on friends' recommendation for dinner with four cousins. Everything was excellent, and the setting was very elegant. The owner was friendly, charismatic and …",
+          reviewText3: "Fresh fish, carefully cooked. Friendly and welcoming service. …",
+          reviewText4: "An excellent seafood restaurant, with a lovely display of the day's catch to choose from and have prepared Ligurian-style…",
+          reviewText5: "A discovery... two visits on two consecutive days. The whole staff were kind and helpful, with special thanks to the owner Mohamed for …",
+          reviewText6: "I was at a table of friends who ordered only seafood dishes (which I don't eat), and they were very satisfied. My pesto linguine was excellent. The desserts are good too. The staff were kind and helpful.",
+          reviewText7: "Excellent restaurant! Very good food, kind staff and a calm atmosphere! Compliments to the kitchen!!!…",
+          reviewText8: "This restaurant is perfect. The food is delicious, the service even better.. friendly people who love their work. Fair price.. actually, I spent more …",
+          reviewText9: "Excellent place, the food is delicious and the service is spectacular…",
+          reviewText10: "Family-run restaurant by the sea. Great hospitality and friendly staff, and good value for money. The food was really very good; I'll definitely return.",
           locationLabel: "Find us",
           mapLink: "Open the map",
           mapFrameTitle: "Interactive map of Il Delfino Verde restaurant in Lavagna",
@@ -872,19 +985,12 @@
 
       const slidesPerPage = () => window.matchMedia("(max-width: 760px)").matches ? 2 : 3;
       const carouselPageCount = () => Math.ceil(foodSlides.length / slidesPerPage());
-      const updateCarouselControls = () => {
+      const updateFoodSlideLabels = () => {
         const totalPages = carouselPageCount();
         carouselPage = Math.min(carouselPage, totalPages - 1);
-        carouselStatus.textContent = `${carouselPage + 1} / ${totalPages}`;
-        foodTrack.setAttribute("aria-live", carouselTimer ? "off" : "polite");
-        carouselStatus.setAttribute("aria-live", carouselTimer ? "off" : "polite");
         foodSlides.forEach((slide, index) => {
           slide.setAttribute("aria-label", `${index + 1} ${currentLanguage === "it" ? "di" : "of"} ${foodSlides.length}`);
         });
-        const label = translations[currentLanguage][carouselAutoplayEnabled ? "pauseCarousel" : "playCarousel"];
-        carouselToggle.setAttribute("aria-label", label);
-        carouselToggle.title = label;
-        carouselToggle.querySelector("span").textContent = carouselAutoplayEnabled ? "Ⅱ" : "▶";
       };
 
       const goToCarouselPage = (page, smooth) => {
@@ -895,7 +1001,7 @@
         const slideRect = firstSlide.getBoundingClientRect();
         const left = foodTrack.scrollLeft + slideRect.left - trackRect.left;
         foodTrack.scrollTo({ left, behavior: smooth && !reducedMotion ? "smooth" : "auto" });
-        updateCarouselControls();
+        updateFoodSlideLabels();
       };
 
       const syncCarouselAutoplay = () => {
@@ -910,7 +1016,6 @@
           window.clearInterval(carouselTimer);
           carouselTimer = 0;
         }
-        updateCarouselControls();
       };
 
       const advanceReviews = () => {
@@ -962,7 +1067,7 @@
         languageToggle.querySelector("span").textContent = language === "it" ? "ENG" : "ITA";
         languageToggle.setAttribute("aria-label", copy.switchLabel);
         menuToggle.setAttribute("aria-label", menuToggle.getAttribute("aria-expanded") === "true" ? copy.menuClose : copy.menuOpen);
-        updateCarouselControls();
+        updateFoodSlideLabels();
       };
 
       root.classList.add("js-nav");
@@ -977,8 +1082,7 @@
       });
       foodCarousel.addEventListener("focusin", event => {
         const movedWithinCarousel = foodCarousel.contains(event.relatedTarget);
-        carouselHasFocus = !movedWithinCarousel || !carouselAutoplayEnabled;
-        if (!movedWithinCarousel && carouselAutoplayEnabled) carouselAutoplayEnabled = false;
+        carouselHasFocus = !movedWithinCarousel;
         syncCarouselAutoplay();
       });
       foodCarousel.addEventListener("focusout", event => {
@@ -986,12 +1090,6 @@
           carouselHasFocus = false;
           syncCarouselAutoplay();
         }
-      });
-      foodCarousel.querySelector("[data-carousel-previous]").addEventListener("click", () => {
-        goToCarouselPage(carouselPage - 1, true);
-      });
-      foodCarousel.querySelector("[data-carousel-next]").addEventListener("click", () => {
-        goToCarouselPage(carouselPage + 1, true);
       });
       reviewsCarousel.addEventListener("pointerenter", () => {
         reviewsPointerInside = true;
@@ -1011,11 +1109,6 @@
           syncReviewsAutoplay();
         }
       });
-      carouselToggle.addEventListener("click", () => {
-        carouselAutoplayEnabled = !carouselAutoplayEnabled;
-        if (carouselAutoplayEnabled) carouselHasFocus = false;
-        syncCarouselAutoplay();
-      });
       foodTrack.addEventListener("scroll", () => {
         window.clearTimeout(carouselScrollTimeout);
         carouselScrollTimeout = window.setTimeout(() => {
@@ -1023,7 +1116,6 @@
           const gap = parseFloat(getComputedStyle(foodTrack).columnGap) || 0;
           const firstIndex = Math.round(foodTrack.scrollLeft / (slideWidth + gap));
           carouselPage = Math.min(Math.floor(firstIndex / slidesPerPage()), carouselPageCount() - 1);
-          updateCarouselControls();
         }, 140);
       }, { passive: true });
       window.addEventListener("resize", () => {
