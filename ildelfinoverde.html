@@ -324,17 +324,17 @@
     .map-title a:hover { text-decoration-color: var(--white); }
     .map-frame { width: min(100%, 320px); aspect-ratio: 1; overflow: hidden; border: 1px solid var(--line); background: rgba(255,255,255,.03); }
     .map-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
-    .social-box { margin-top: 32px; }
-    .social-box-title { margin: 0 0 10px; color: var(--white); font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-    .social-links { display: flex; flex-wrap: wrap; gap: 8px 22px; }
-    .social-links a { display: inline-flex; min-height: 36px; align-items: center; gap: 8px; padding: 4px 0; color: var(--white); font-size: .82rem; font-weight: 600; text-decoration: none; transition: color .2s ease; }
+    .social-box { margin-top: 32px; padding: 22px; border-left: 2px solid rgba(255,255,255,.42); background: rgba(255,255,255,.04); }
+    .social-box-title { margin: 0 0 16px; color: var(--white); font-family: var(--accent-serif); font-size: 1.55rem; font-weight: 400; line-height: 1.15; }
+    .social-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .social-links a { display: flex; min-height: 44px; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; background: rgba(255,255,255,.06); color: var(--white); font-size: .8rem; font-weight: 700; text-decoration: none; transition: background .2s ease, color .2s ease; }
     .social-links a span { color: var(--muted); font-size: 1rem; }
-    .social-links a:hover { color: var(--muted); }
+    .social-links a:hover { background: rgba(255,255,255,.12); color: var(--white); }
+    .review-button { display: inline-flex; min-height: 44px; align-items: center; gap: 10px; margin-top: 16px; padding: 11px 16px; background: var(--white); color: var(--navy); font-size: .78rem; font-weight: 700; text-decoration: none; transition: background .2s ease, color .2s ease; }
+    .review-button:hover { background: transparent; color: var(--white); outline: 1px solid var(--white); }
 
     .site-footer { padding-block: 28px; background: var(--navy); color: var(--muted); font-size: .78rem; }
     .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-    .site-footer a { color: var(--white); text-decoration: none; }
-    .site-footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
     .motion-ready .reveal {
       opacity: 0;
@@ -406,7 +406,7 @@
       .food-grid figure { flex-basis: calc((100% - 9px) / 2); }
       .food-grid img { min-height: 150px; }
       .history-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
-      .social-links { gap: 8px 20px; }
+      .social-links { grid-template-columns: 1fr; }
       .footer-row { align-items: flex-start; flex-direction: column; }
     }
 
@@ -416,7 +416,7 @@
       .brand small { font-size: .54rem; }
       .language-toggle { width: 46px; min-width: 46px; height: 36px; }
       .hero-prefix, .hero h1 { font-size: clamp(2.8rem, 13vw, 4.1rem); }
-      .social-links { gap: 16px; }
+      .social-box { padding: 20px 16px; }
     }
   </style>
 </head>
@@ -561,14 +561,15 @@
             <div class="detail"><strong data-i18n="closedLabel">Giorno di chiusura</strong><span data-i18n="closedDay">Martedì</span></div>
             <div class="detail"><strong data-i18n="phoneLabel">Telefono</strong><a href="tel:+393282926782">+39 328 292 6782</a></div>
           </div>
-          <div class="social-box">
-            <p class="social-box-title" data-i18n="socialTitle">Seguici e contattaci</p>
+          <section class="social-box" aria-labelledby="social-title">
+            <h3 class="social-box-title" id="social-title" data-i18n="socialTitle">Seguici e contattaci</h3>
             <div class="social-links">
               <a href="https://wa.me/393282926782" target="_blank" rel="noopener">WhatsApp <span aria-hidden="true">↗</span></a>
               <a href="https://www.instagram.com/delfino_verde_lavagna/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a>
               <a href="https://www.facebook.com/profile.php?id=61559550250654" target="_blank" rel="noopener">Facebook <span aria-hidden="true">↗</span></a>
             </div>
-          </div>
+            <a class="review-button" href="https://g.page/r/CcCddIhVSyUfEBM/review" target="_blank" rel="noopener"><span data-i18n="reviewLink">Lascia una recensione</span> <span aria-hidden="true">↗</span></a>
+          </section>
         </div>
       </div>
     </section>
@@ -577,7 +578,6 @@
   <footer class="site-footer">
     <div class="wrap footer-row">
       <span>© Il Delfino Verde · Lavagna</span>
-      <a href="https://g.page/r/CcCddIhVSyUfEBM/review" target="_blank" rel="noopener" data-i18n="reviewLink">Lascia una recensione</a>
     </div>
   </footer>
   <script>
