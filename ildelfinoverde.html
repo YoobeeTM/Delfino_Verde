@@ -259,9 +259,27 @@
 
     .food-section { padding-bottom: 82px; }
     .section-heading { max-width: 700px; margin: 0 auto 42px; text-align: center; }
-    .section-heading p:last-child { color: var(--muted); }
-    .food-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .food-grid figure { position: relative; margin: 0; overflow: hidden; border: 1px solid var(--line); background: var(--navy); }
+    .food-carousel { min-width: 0; }
+    .food-grid {
+      display: flex;
+      gap: 12px;
+      margin: 0;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+    }
+    .food-grid::-webkit-scrollbar { display: none; }
+    .food-grid figure {
+      position: relative;
+      flex: 0 0 calc((100% - 24px) / 3);
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--navy);
+      scroll-snap-align: start;
+    }
     .food-grid img { width: 100%; height: 100%; min-height: 210px; aspect-ratio: 1 / 1; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1), opacity .4s ease; }
     .food-grid figure::after {
       position: absolute;
@@ -273,6 +291,21 @@
     }
     .food-grid figure:hover img { transform: scale(1.055); }
     .food-grid figure:hover::after { inset: 10px; border-color: rgba(255,255,255,.65); }
+    .food-carousel-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px; }
+    .carousel-button {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--white);
+      font: 1.15rem/1 var(--sans);
+      cursor: pointer;
+      transition: border-color .2s ease, background .2s ease, color .2s ease;
+    }
+    .carousel-button:hover { border-color: var(--white); background: var(--white); color: var(--navy); }
+    .carousel-status { min-width: 48px; color: var(--muted); font-size: .78rem; font-variant-numeric: tabular-nums; text-align: center; }
 
     .history { background: var(--navy); }
     .history-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
@@ -310,9 +343,8 @@
     .motion-ready .reveal.is-visible { opacity: 1; transform: translateY(0); }
     .hero-content.reveal { transform: translateY(18px); }
     .hero-content.reveal.is-visible { transform: translateY(0); }
-    .food-grid figure:nth-child(4n + 2), .history-grid img:nth-child(even) { --reveal-delay: 90ms; }
-    .food-grid figure:nth-child(4n + 3), .history-grid img:nth-child(3) { --reveal-delay: 180ms; }
-    .food-grid figure:nth-child(4n), .history-grid img:nth-child(4) { --reveal-delay: 270ms; }
+    .history-grid img:nth-child(even) { --reveal-delay: 90ms; }
+    .history-grid img:nth-child(3), .history-grid img:nth-child(4) { --reveal-delay: 180ms; }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
       .motion-ready .reveal { opacity: 1; transform: none; }
@@ -366,7 +398,8 @@
       .menu-language-links { grid-template-columns: 1fr; }
       .menu-card { min-height: 86px; flex-direction: row; align-items: center; }
       .menu-card .arrow { align-self: center; }
-      .food-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
+      .food-grid { gap: 9px; }
+      .food-grid figure { flex-basis: calc((100% - 9px) / 2); }
       .food-grid img { min-height: 150px; }
       .history-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
       .detail-location { align-items: flex-start; gap: 10px; }
@@ -473,16 +506,23 @@
       <div class="wrap">
         <div class="section-heading reveal">
           <p class="eyebrow" data-i18n="foodEyebrow">Dalla nostra cucina</p>
-          <h2 data-i18n="foodTitle">I nostri piatti</h2>
-          <p data-i18n="foodDescription">Pesce fresco e sapori da condividere, con il mare di Lavagna sullo sfondo.</p>
+          <h2 data-i18n="foodTitle">Il mare, alla nostra maniera</h2>
         </div>
-        <div class="food-grid">
-          <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_de855249d5c109c715d484492a927ad71e633a39.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.03.14%20-%20copia.jpeg" alt="Un piatto di pesce della cucina del ristorante" data-i18n-alt="foodImage1" loading="lazy"></figure>
-          <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_a415464325e91ae7e84148da65a4b907088c8cf6.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.03.49.jpeg" alt="Una delle specialità di mare" data-i18n-alt="foodImage2" loading="lazy"></figure>
-          <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_96f039c275e2ad8751c838a9ace73dc9ceb71d4f.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.29.24.jpeg" alt="Una proposta della cucina di pesce" data-i18n-alt="foodImage4" loading="lazy"></figure>
-          <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_0c5c015b319bda4d6836b481ee7185b78702dd68.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.22.20.jpeg" alt="Un piatto della tradizione di mare" data-i18n-alt="foodImage5" loading="lazy"></figure>
-          <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_e594775126b4c12dbeb0ef8d1d79bf1fcb916c28.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.26.33.jpeg" alt="Una specialità di pesce fresco" data-i18n-alt="foodImage6" loading="lazy"></figure>
-          <figure class="reveal"><img src="https://files.supersite.aruba.it/media/11586_94795fc9f6f083380b08f5466ab33f5d57081e29.jpeg/v1/w_470,h_470/img-20240324-wa0001.jpeg" alt="Un piatto servito al Delfino Verde" data-i18n-alt="foodImage7" loading="lazy"></figure>
+        <div class="food-carousel reveal" role="region" aria-roledescription="carosello" aria-label="Galleria dei piatti" data-i18n-role="foodCarouselRole" data-i18n-aria="foodCarouselLabel">
+          <div class="food-grid" id="food-track">
+            <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="1 di 6"><img src="https://files.supersite.aruba.it/media/11586_de855249d5c109c715d484492a927ad71e633a39.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.03.14%20-%20copia.jpeg" alt="Un piatto di pesce della cucina del ristorante" data-i18n-alt="foodImage1" loading="lazy"></figure>
+            <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="2 di 6"><img src="https://files.supersite.aruba.it/media/11586_a415464325e91ae7e84148da65a4b907088c8cf6.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.03.49.jpeg" alt="Una delle specialità di mare" data-i18n-alt="foodImage2" loading="lazy"></figure>
+            <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="3 di 6"><img src="https://files.supersite.aruba.it/media/11586_96f039c275e2ad8751c838a9ace73dc9ceb71d4f.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.29.24.jpeg" alt="Una proposta della cucina di pesce" data-i18n-alt="foodImage4" loading="lazy"></figure>
+            <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="4 di 6"><img src="https://files.supersite.aruba.it/media/11586_0c5c015b319bda4d6836b481ee7185b78702dd68.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.22.20.jpeg" alt="Un piatto della tradizione di mare" data-i18n-alt="foodImage5" loading="lazy"></figure>
+            <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="5 di 6"><img src="https://files.supersite.aruba.it/media/11586_e594775126b4c12dbeb0ef8d1d79bf1fcb916c28.jpeg/v1/w_470,h_470/whatsapp%20image%202025-05-15%20at%2011.26.33.jpeg" alt="Una specialità di pesce fresco" data-i18n-alt="foodImage6" loading="lazy"></figure>
+            <figure class="food-slide" role="group" aria-roledescription="slide" aria-label="6 di 6"><img src="https://files.supersite.aruba.it/media/11586_94795fc9f6f083380b08f5466ab33f5d57081e29.jpeg/v1/w_470,h_470/img-20240324-wa0001.jpeg" alt="Un piatto servito al Delfino Verde" data-i18n-alt="foodImage7" loading="lazy"></figure>
+          </div>
+          <div class="food-carousel-controls" role="group" aria-label="Controlli del carosello" data-i18n-aria="foodCarouselControls">
+            <button class="carousel-button" type="button" data-carousel-previous aria-label="Foto precedenti" data-i18n-aria="previousFoodSlides"><span aria-hidden="true">←</span></button>
+            <span class="carousel-status" data-carousel-status aria-live="off" aria-atomic="true">1 / 2</span>
+            <button class="carousel-button" type="button" data-carousel-toggle aria-label="Metti in pausa lo scorrimento automatico"><span aria-hidden="true">Ⅱ</span></button>
+            <button class="carousel-button" type="button" data-carousel-next aria-label="Foto successive" data-i18n-aria="nextFoodSlides"><span aria-hidden="true">→</span></button>
+          </div>
         </div>
       </div>
     </section>
@@ -543,6 +583,18 @@
       const menuLinks = document.querySelectorAll(".nav-links a");
       const progress = document.querySelector(".scroll-progress span");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const foodCarousel = document.querySelector(".food-carousel");
+      const foodTrack = document.querySelector(".food-grid");
+      const foodSlides = Array.from(foodTrack.querySelectorAll(".food-slide"));
+      const carouselStatus = foodCarousel.querySelector("[data-carousel-status]");
+      const carouselToggle = foodCarousel.querySelector("[data-carousel-toggle]");
+      let carouselPage = 0;
+      let carouselTimer = 0;
+      let carouselScrollTimeout = 0;
+      let carouselAutoplayEnabled = !reducedMotion;
+      let carouselInView = !("IntersectionObserver" in window);
+      let carouselPointerInside = false;
+      let carouselHasFocus = false;
       const translations = {
         it: {
           pageTitle: "Il Delfino Verde | Ristorante di pesce a Lavagna",
@@ -579,8 +631,14 @@
           englishDrinksLink: "Wines and drinks",
           englishDrinksPdf: "Drinks list · PDF",
           foodEyebrow: "Dalla nostra cucina",
-          foodTitle: "I nostri piatti",
-          foodDescription: "Pesce fresco e sapori da condividere, con il mare di Lavagna sullo sfondo.",
+          foodTitle: "Il mare, alla nostra maniera",
+          foodCarouselRole: "carosello",
+          foodCarouselLabel: "Galleria dei piatti",
+          foodCarouselControls: "Controlli del carosello",
+          previousFoodSlides: "Foto precedenti",
+          nextFoodSlides: "Foto successive",
+          pauseCarousel: "Metti in pausa lo scorrimento automatico",
+          playCarousel: "Avvia lo scorrimento automatico",
           foodImage1: "Un piatto di pesce della cucina del ristorante",
           foodImage2: "Una delle specialità di mare",
           foodImage4: "Una proposta della cucina di pesce",
@@ -637,7 +695,13 @@
           englishDrinksPdf: "View the list · PDF",
           foodEyebrow: "From our kitchen",
           foodTitle: "A taste of the sea",
-          foodDescription: "Fresh seafood and generous flavours, with Lavagna’s seafront just beyond.",
+          foodCarouselRole: "carousel",
+          foodCarouselLabel: "Seafood dishes",
+          foodCarouselControls: "Seafood carousel controls",
+          previousFoodSlides: "Previous photos",
+          nextFoodSlides: "Next photos",
+          pauseCarousel: "Pause automatic slide show",
+          playCarousel: "Resume automatic slide show",
           foodImage1: "A seafood dish from the restaurant kitchen",
           foodImage2: "One of our seafood specialities",
           foodImage4: "A seafood dish from our menu",
@@ -661,6 +725,49 @@
       };
       let currentLanguage = "it";
 
+      const slidesPerPage = () => window.matchMedia("(max-width: 760px)").matches ? 2 : 3;
+      const carouselPageCount = () => Math.ceil(foodSlides.length / slidesPerPage());
+      const updateCarouselControls = () => {
+        const totalPages = carouselPageCount();
+        carouselPage = Math.min(carouselPage, totalPages - 1);
+        carouselStatus.textContent = `${carouselPage + 1} / ${totalPages}`;
+        foodTrack.setAttribute("aria-live", carouselTimer ? "off" : "polite");
+        carouselStatus.setAttribute("aria-live", carouselTimer ? "off" : "polite");
+        foodSlides.forEach((slide, index) => {
+          slide.setAttribute("aria-label", `${index + 1} ${currentLanguage === "it" ? "di" : "of"} ${foodSlides.length}`);
+        });
+        const label = translations[currentLanguage][carouselAutoplayEnabled ? "pauseCarousel" : "playCarousel"];
+        carouselToggle.setAttribute("aria-label", label);
+        carouselToggle.title = label;
+        carouselToggle.querySelector("span").textContent = carouselAutoplayEnabled ? "Ⅱ" : "▶";
+      };
+
+      const goToCarouselPage = (page, smooth) => {
+        const totalPages = carouselPageCount();
+        carouselPage = (page + totalPages) % totalPages;
+        const firstSlide = foodSlides[carouselPage * slidesPerPage()];
+        const trackRect = foodTrack.getBoundingClientRect();
+        const slideRect = firstSlide.getBoundingClientRect();
+        const left = foodTrack.scrollLeft + slideRect.left - trackRect.left;
+        foodTrack.scrollTo({ left, behavior: smooth && !reducedMotion ? "smooth" : "auto" });
+        updateCarouselControls();
+      };
+
+      const syncCarouselAutoplay = () => {
+        const shouldRun = carouselAutoplayEnabled
+          && carouselInView
+          && !carouselPointerInside
+          && !carouselHasFocus
+          && document.visibilityState !== "hidden";
+        if (shouldRun && !carouselTimer) {
+          carouselTimer = window.setInterval(() => goToCarouselPage(carouselPage + 1, true), 5000);
+        } else if (!shouldRun && carouselTimer) {
+          window.clearInterval(carouselTimer);
+          carouselTimer = 0;
+        }
+        updateCarouselControls();
+      };
+
       const applyLanguage = language => {
         currentLanguage = language;
         const copy = translations[language];
@@ -676,12 +783,62 @@
         document.querySelectorAll("[data-i18n-aria]").forEach(element => {
           element.setAttribute("aria-label", copy[element.dataset.i18nAria]);
         });
+        document.querySelectorAll("[data-i18n-role]").forEach(element => {
+          element.setAttribute("aria-roledescription", copy[element.dataset.i18nRole]);
+        });
         languageToggle.querySelector("span").textContent = language === "it" ? "ENG" : "ITA";
         languageToggle.setAttribute("aria-label", copy.switchLabel);
         menuToggle.setAttribute("aria-label", menuToggle.getAttribute("aria-expanded") === "true" ? copy.menuClose : copy.menuOpen);
+        updateCarouselControls();
       };
 
       root.classList.add("js-nav");
+
+      foodCarousel.addEventListener("pointerenter", () => {
+        carouselPointerInside = true;
+        syncCarouselAutoplay();
+      });
+      foodCarousel.addEventListener("pointerleave", () => {
+        carouselPointerInside = false;
+        syncCarouselAutoplay();
+      });
+      foodCarousel.addEventListener("focusin", event => {
+        const movedWithinCarousel = foodCarousel.contains(event.relatedTarget);
+        carouselHasFocus = !movedWithinCarousel || !carouselAutoplayEnabled;
+        if (!movedWithinCarousel && carouselAutoplayEnabled) carouselAutoplayEnabled = false;
+        syncCarouselAutoplay();
+      });
+      foodCarousel.addEventListener("focusout", event => {
+        if (!foodCarousel.contains(event.relatedTarget)) {
+          carouselHasFocus = false;
+          syncCarouselAutoplay();
+        }
+      });
+      foodCarousel.querySelector("[data-carousel-previous]").addEventListener("click", () => {
+        goToCarouselPage(carouselPage - 1, true);
+      });
+      foodCarousel.querySelector("[data-carousel-next]").addEventListener("click", () => {
+        goToCarouselPage(carouselPage + 1, true);
+      });
+      carouselToggle.addEventListener("click", () => {
+        carouselAutoplayEnabled = !carouselAutoplayEnabled;
+        if (carouselAutoplayEnabled) carouselHasFocus = false;
+        syncCarouselAutoplay();
+      });
+      foodTrack.addEventListener("scroll", () => {
+        window.clearTimeout(carouselScrollTimeout);
+        carouselScrollTimeout = window.setTimeout(() => {
+          const slideWidth = foodSlides[0].getBoundingClientRect().width;
+          const gap = parseFloat(getComputedStyle(foodTrack).columnGap) || 0;
+          const firstIndex = Math.round(foodTrack.scrollLeft / (slideWidth + gap));
+          carouselPage = Math.min(Math.floor(firstIndex / slidesPerPage()), carouselPageCount() - 1);
+          updateCarouselControls();
+        }, 140);
+      }, { passive: true });
+      window.addEventListener("resize", () => {
+        window.requestAnimationFrame(() => goToCarouselPage(carouselPage, false));
+      }, { passive: true });
+      document.addEventListener("visibilitychange", syncCarouselAutoplay);
 
       const closeMenu = () => {
         header.classList.remove("nav-open");
@@ -721,6 +878,14 @@
       window.addEventListener("resize", updateScrollEffects, { passive: true });
       updateScrollEffects();
       applyLanguage(currentLanguage);
+      if ("IntersectionObserver" in window) {
+        const carouselObserver = new IntersectionObserver(entries => {
+          carouselInView = entries[0].isIntersecting;
+          syncCarouselAutoplay();
+        }, { threshold: 0.1 });
+        carouselObserver.observe(foodCarousel);
+      }
+      syncCarouselAutoplay();
 
       if (!reducedMotion && "IntersectionObserver" in window) {
         root.classList.add("motion-ready");
