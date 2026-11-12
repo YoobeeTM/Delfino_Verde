@@ -232,7 +232,8 @@
     .menu-section h2 { color: var(--white); }
     .menu-heading { max-width: 690px; margin: 0 auto 44px; text-align: center; }
     .menu-heading p { margin-bottom: 0; color: var(--muted); }
-    .menu-languages { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+    .menu-languages { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 900px; gap: 22px; margin-inline: auto; }
+    html[lang="it"] .menu-language--en, html[lang="en"] .menu-language--it { display: none; }
     .menu-language {
       padding: 30px;
       border: 1px solid var(--line);
@@ -322,6 +323,8 @@
     .detail address { font-style: normal; }
     .detail-location strong { margin-bottom: 9px; font-size: 1.05rem; }
     .detail-location address { color: var(--muted); line-height: 1.6; }
+    .visit-details .detail strong { margin-bottom: 9px; font-size: 1.05rem; }
+    .visit-details .detail > span, .visit-details .detail > a { color: var(--muted); line-height: 1.6; }
     .map-panel { min-width: 0; }
     .map-title { margin: 16px 0 12px; font-family: var(--accent-serif); font-size: 1.2rem; font-weight: 400; }
     .map-title a { color: var(--white); text-decoration-color: var(--line); text-underline-offset: 5px; transition: text-decoration-color .2s ease; }
@@ -483,10 +486,10 @@
         <div class="menu-heading reveal">
           <p class="eyebrow" data-i18n="menuEyebrow">A tavola</p>
           <h2 data-i18n="menuTitle">Il menù</h2>
-          <p data-i18n="menuIntro">Scegli la lingua e consulta il menù del ristorante o la selezione di vini e bevande.</p>
+          <p data-i18n="menuIntro">Consulta il menù del ristorante e la selezione di vini e bevande.</p>
         </div>
         <div class="menu-languages">
-          <section class="menu-language reveal" aria-labelledby="menu-italiano">
+          <section class="menu-language menu-language--it reveal" aria-labelledby="menu-italiano">
             <h3 id="menu-italiano" data-i18n="italianMenuTitle">Italiano</h3>
             <p data-i18n="italianMenuDescription">Menù del ristorante e carta delle bevande.</p>
             <div class="menu-language-links">
@@ -498,7 +501,7 @@
               </a>
             </div>
           </section>
-          <section class="menu-language reveal" aria-labelledby="menu-english">
+          <section class="menu-language menu-language--en reveal" aria-labelledby="menu-english">
             <h3 id="menu-english" data-i18n="englishMenuTitle">English</h3>
             <p data-i18n="englishMenuDescription">Restaurant menu and drinks list.</p>
             <div class="menu-language-links">
@@ -635,7 +638,7 @@
           introPhoto: "La veranda del ristorante Il Delfino Verde a Lavagna di sera",
           menuEyebrow: "A tavola",
           menuTitle: "Il menù",
-          menuIntro: "Scegli la lingua e consulta il menù del ristorante o la selezione di vini e bevande.",
+          menuIntro: "Consulta il menù del ristorante e la selezione di vini e bevande.",
           italianMenuTitle: "Italiano",
           italianMenuDescription: "Menù del ristorante e carta delle bevande.",
           italianMenuLink: "Menù",
@@ -700,7 +703,7 @@
           introPhoto: "Il Delfino Verde's terrace in Lavagna at night",
           menuEyebrow: "A taste of the sea",
           menuTitle: "Our menu",
-          menuIntro: "Browse the restaurant menu, along with our wine and drinks list.",
+          menuIntro: "Browse our restaurant menu and wine and drinks list.",
           italianMenuTitle: "Italian menu",
           italianMenuDescription: "The restaurant menu and drinks list in Italian.",
           italianMenuLink: "Italian menu",
