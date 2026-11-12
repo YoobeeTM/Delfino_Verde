@@ -316,24 +316,36 @@
     .history-grid img:hover { filter: saturate(1); transform: translateY(-4px); }
 
     .reviews-section { background: var(--navy); }
-    .reviews-layout { display: grid; grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr); align-items: stretch; gap: 24px; }
-    .reviews-summary { display: grid; align-content: start; gap: 12px; }
-    .review-score-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 3px 14px; padding: 18px 20px; border: 1px solid var(--line); color: var(--white); text-decoration: none; transition: border-color .2s ease, background .2s ease; }
-    .review-score-card:hover { border-color: rgba(255,255,255,.72); background: rgba(255,255,255,.04); }
-    .review-platform-name { font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-    .review-rating { grid-column: 2; grid-row: 1 / span 2; font-family: var(--serif); font-size: 2rem; font-weight: 400; white-space: nowrap; }
-    .review-rating small { color: var(--muted); font: .78rem var(--sans); }
-    .review-count { color: var(--muted); font-size: .78rem; }
-    .review-note { margin: 4px 0 0; color: var(--muted); font-size: .72rem; line-height: 1.6; }
+    .reviews-layout { display: grid; grid-template-columns: minmax(190px, .65fr) minmax(0, 1.35fr); align-items: center; gap: 28px; }
+    .reviews-summary { display: grid; justify-items: center; align-content: center; gap: 10px; text-align: center; }
+    .review-average-label { margin: 0; color: var(--white); font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .review-rating { color: var(--white); font-family: var(--serif); font-size: 2.6rem; font-weight: 400; line-height: 1; white-space: nowrap; }
+    .review-rating small { color: var(--muted); font: .82rem var(--sans); }
+    .review-stars { position: relative; color: rgba(255,255,255,.2); font-size: 1.8rem; letter-spacing: .04em; line-height: 1; }
+    .review-stars::before { position: absolute; inset: 0 auto 0 0; width: 88%; overflow: hidden; color: #fbbc04; content: "★★★★★"; white-space: nowrap; }
+    .review-count { color: var(--muted); font-size: .82rem; }
+    .google-wordmark { display: inline-flex; gap: 0; margin-top: 4px; font-family: Arial, sans-serif; font-size: 1.8rem; font-weight: 700; letter-spacing: -.08em; line-height: 1; text-decoration: none; }
+    .google-wordmark span:nth-child(1) { color: #4285f4; }
+    .google-wordmark span:nth-child(2) { color: #ea4335; }
+    .google-wordmark span:nth-child(3) { color: #fbbc05; }
+    .google-wordmark span:nth-child(4) { color: #4285f4; }
+    .google-wordmark span:nth-child(5) { color: #34a853; }
+    .google-wordmark span:nth-child(6) { color: #ea4335; }
+    .review-all-link { color: var(--white); font-size: .78rem; text-decoration-color: var(--line); text-underline-offset: 4px; }
+    .review-note { max-width: 270px; margin: 4px 0 0; color: var(--muted); font-size: .7rem; line-height: 1.6; }
     .reviews-carousel { min-width: 0; }
-    .review-track { display: flex; gap: 14px; margin: 0; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
+    .review-track { display: flex; gap: 14px; margin: 0; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; touch-action: pan-x; }
     .review-track::-webkit-scrollbar { display: none; }
-    .review-card { display: flex; flex: 0 0 calc((100% - 14px) / 2); min-height: 250px; flex-direction: column; padding: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.025); scroll-snap-align: start; }
-    .review-card-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 18px; }
-    .review-source { color: var(--white); font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-decoration-color: var(--line); text-underline-offset: 4px; }
-    .review-card-copy { flex: 1; margin: 0 0 22px; color: var(--muted); font-size: .9rem; line-height: 1.7; }
-    .review-card cite { color: var(--white); font-size: .8rem; font-style: normal; font-weight: 700; }
-    .reviews-carousel-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px; }
+    .review-card { display: flex; flex: 0 0 calc((100% - 14px) / 2); min-height: 250px; flex-direction: column; padding: 22px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.035); scroll-snap-align: start; }
+    .review-card-header { display: grid; grid-template-columns: 42px minmax(0, 1fr) 24px; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .review-avatar { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 50%; background: rgba(255,255,255,.14); color: var(--white); font-size: .95rem; font-weight: 700; }
+    .review-avatar--teal { background: #008f9d; }
+    .review-avatar--plum { background: #7925a1; }
+    .reviewer-meta { display: grid; gap: 3px; min-width: 0; text-align: left; }
+    .reviewer-meta cite { overflow: hidden; color: var(--white); font-size: .84rem; font-style: normal; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+    .reviewer-meta span { color: var(--muted); font-size: .72rem; }
+    .google-mark { background: conic-gradient(from -45deg, #4285f4 0 25%, #34a853 25% 44%, #fbbc05 44% 64%, #ea4335 64% 82%, #4285f4 82% 100%); background-clip: text; color: transparent; font-family: Arial, sans-serif; font-size: 1.4rem; font-weight: 700; line-height: 1; text-decoration: none; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .review-card-copy { flex: 1; margin: 0; color: var(--white); font-size: .88rem; line-height: 1.7; }
 
     .visit-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: start; gap: 48px; }
     .visit-copy > p:not(.eyebrow) { color: var(--muted); }
@@ -582,46 +594,48 @@
     <section class="section reviews-section" id="recensioni" aria-labelledby="reviews-title">
       <div class="wrap">
         <div class="section-heading reveal">
-          <p class="eyebrow" data-i18n="reviewsEyebrow">Le parole degli ospiti</p>
-          <h2 id="reviews-title" data-i18n="reviewsTitle">Le vostre esperienze</h2>
-          <p data-i18n="reviewsIntro">La cucina, l'accoglienza e i momenti che i nostri ospiti scelgono di ricordare.</p>
+          <p class="eyebrow" data-i18n="reviewsEyebrow">Recensioni Google</p>
+          <h2 id="reviews-title" data-i18n="reviewsTitle">Le parole dei nostri ospiti</h2>
+          <p data-i18n="reviewsIntro">Alcune impressioni condivise pubblicamente su Google.</p>
         </div>
         <div class="reviews-layout">
           <div class="reviews-summary reveal">
-            <a class="review-score-card" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener">
-              <span class="review-platform-name">Google</span>
-              <strong class="review-rating">4,4 <small>/ 5</small></strong>
-              <span class="review-count" data-i18n="googleReviewCount">538 recensioni</span>
+            <p class="review-average-label" data-i18n="reviewAverageLabel">Valutazione media</p>
+            <strong class="review-rating">4,4 <small>/ 5</small></strong>
+            <span class="review-stars" aria-hidden="true">★★★★★</span>
+            <span class="review-count" data-i18n="googleReviewCount">538 recensioni su Google</span>
+            <a class="google-wordmark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Google">
+              <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
             </a>
+            <a class="review-all-link" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n="reviewsLink">Leggi tutte le recensioni su Google ↗</a>
             <p class="review-note" data-i18n="reviewsNote">Valutazioni e conteggi rilevati a novembre 2026; possono variare. Le schede riportano sintesi, non citazioni letterali.</p>
           </div>
-          <div class="reviews-carousel reveal" role="region" aria-roledescription="carosello" aria-label="Recensioni dei nostri ospiti" data-i18n-role="reviewsCarouselRole" data-i18n-aria="reviewsCarouselLabel">
-            <div class="review-track" id="review-track">
+          <div class="reviews-carousel reveal" role="region" aria-roledescription="carosello" aria-label="Recensioni Google" data-i18n-role="reviewsCarouselRole" data-i18n-aria="reviewsCarouselLabel">
+            <div class="review-track" id="review-track" tabindex="0">
               <article class="review-card">
                 <div class="review-card-header">
-                  <a class="review-source" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n-aria="viewGoogleReviews" aria-label="Apri le recensioni su Google">Google ↗</a>
+                  <span class="review-avatar review-avatar--plum" aria-hidden="true">E</span>
+                  <div class="reviewer-meta"><cite>Eleonora P.</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
                 </div>
                 <p class="review-card-copy" data-i18n="googleReview1">Una cena apprezzata per il buon cibo, il personale sorridente e il vino della casa; gli ospiti dicono che torneranno.</p>
-                <cite>Eleonora P.</cite>
               </article>
               <article class="review-card">
                 <div class="review-card-header">
-                  <a class="review-source" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n-aria="viewGoogleReviews" aria-label="Apri le recensioni su Google">Google ↗</a>
+                  <span class="review-avatar review-avatar--teal" aria-hidden="true">IC</span>
+                  <div class="reviewer-meta"><cite>IC</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
                 </div>
                 <p class="review-card-copy" data-i18n="googleReview2">Una serata all'aperto con pesce fresco, resa ancora più piacevole da una chiacchierata con il proprietario sulla storia del ristorante.</p>
-                <cite>IC</cite>
               </article>
               <article class="review-card">
                 <div class="review-card-header">
-                  <a class="review-source" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n-aria="viewGoogleReviews" aria-label="Apri le recensioni su Google">Google ↗</a>
+                  <span class="review-avatar" aria-hidden="true">L</span>
+                  <div class="reviewer-meta"><cite>Luana A.</cite><span data-i18n="reviewSourceLabel">Recensione Google</span></div>
+                  <a class="google-mark" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" aria-label="Apri le recensioni su Google" data-i18n-aria="reviewsLinkAria">G</a>
                 </div>
                 <p class="review-card-copy" data-i18n="googleReview3">Un commento entusiasta apprezza la cucina e il servizio spettacolare del ristorante.</p>
-                <cite>Luana A.</cite>
               </article>
-            </div>
-            <div class="reviews-carousel-controls" role="group" aria-label="Controlli recensioni" data-i18n-aria="reviewsCarouselControls">
-              <button class="carousel-button" type="button" data-reviews-previous aria-label="Recensioni precedenti" data-i18n-aria="previousReviews"><span aria-hidden="true">←</span></button>
-              <button class="carousel-button" type="button" data-reviews-next aria-label="Recensioni successive" data-i18n-aria="nextReviews"><span aria-hidden="true">→</span></button>
             </div>
           </div>
         </div>
@@ -689,6 +703,11 @@
       let carouselInView = !("IntersectionObserver" in window);
       let carouselPointerInside = false;
       let carouselHasFocus = false;
+      let reviewsTimer = 0;
+      let reviewsInView = !("IntersectionObserver" in window);
+      let reviewsPointerInside = false;
+      let reviewsHasFocus = false;
+      const reviewsAutoplayEnabled = !reducedMotion;
       const translations = {
         it: {
           pageTitle: "Il Delfino Verde | Ristorante di pesce a Lavagna",
@@ -745,17 +764,17 @@
           historyImage2: "Lavagna in una fotografia d'epoca",
           historyImage3: "Una veduta storica di Lavagna",
           historyImage4: "Un ricordo della storia del ristorante",
-          reviewsEyebrow: "Le parole degli ospiti",
-          reviewsTitle: "Le vostre esperienze",
-          reviewsIntro: "La cucina, l'accoglienza e i momenti che i nostri ospiti scelgono di ricordare.",
-          googleReviewCount: "538 recensioni",
-          reviewsNote: "Valutazioni e conteggi rilevati a novembre 2026; possono variare. Le schede riportano sintesi, non citazioni letterali.",
+          reviewsEyebrow: "Recensioni Google",
+          reviewsTitle: "Le parole dei nostri ospiti",
+          reviewsIntro: "Alcune impressioni condivise pubblicamente su Google.",
+          reviewAverageLabel: "Valutazione media",
+          googleReviewCount: "538 recensioni su Google",
+          reviewsLink: "Leggi tutte le recensioni su Google ↗",
+          reviewsLinkAria: "Leggi tutte le recensioni del ristorante su Google",
+          reviewSourceLabel: "Recensione Google",
+          reviewsNote: "Valutazione e conteggio rilevati a novembre 2026; possono variare. I testi delle schede sono sintesi originali, non citazioni letterali.",
           reviewsCarouselRole: "carosello",
-          reviewsCarouselLabel: "Recensioni dei nostri ospiti",
-          reviewsCarouselControls: "Controlli recensioni",
-          previousReviews: "Recensioni precedenti",
-          nextReviews: "Recensioni successive",
-          viewGoogleReviews: "Apri le recensioni su Google",
+          reviewsCarouselLabel: "Recensioni Google",
           googleReview1: "Una cena apprezzata per il buon cibo, il personale sorridente e il vino della casa; gli ospiti dicono che torneranno.",
           googleReview2: "Una serata all'aperto con pesce fresco, resa ancora più piacevole da una chiacchierata con il proprietario sulla storia del ristorante.",
           googleReview3: "Un commento entusiasta apprezza la cucina e il servizio spettacolare del ristorante.",
@@ -824,17 +843,17 @@
           historyImage2: "Lavagna in days gone by",
           historyImage3: "A historic view of Lavagna",
           historyImage4: "A glimpse into the restaurant’s past",
-          reviewsEyebrow: "Guest reviews",
-          reviewsTitle: "Experiences worth sharing",
-          reviewsIntro: "Our cooking, warm welcome and the moments guests choose to remember.",
-          googleReviewCount: "538 reviews",
-          reviewsNote: "Ratings and review counts checked in November 2026; they may change. Cards summarize public reviews rather than quoting them.",
+          reviewsEyebrow: "Google Reviews",
+          reviewsTitle: "What our guests say",
+          reviewsIntro: "A selection of impressions shared publicly on Google.",
+          reviewAverageLabel: "Average rating",
+          googleReviewCount: "538 Google reviews",
+          reviewsLink: "Read all reviews on Google ↗",
+          reviewsLinkAria: "Read all restaurant reviews on Google",
+          reviewSourceLabel: "Google review",
+          reviewsNote: "Rating and count checked in November 2026; they may change. Card text is an original summary, not a verbatim review.",
           reviewsCarouselRole: "carousel",
-          reviewsCarouselLabel: "Guest reviews",
-          reviewsCarouselControls: "Review carousel controls",
-          previousReviews: "Previous reviews",
-          nextReviews: "Next reviews",
-          viewGoogleReviews: "Open Google reviews",
+          reviewsCarouselLabel: "Google reviews",
           googleReview1: "Guests praised the food, smiling staff and house wine, and said they would gladly return.",
           googleReview2: "A pleasant outdoor dinner with fresh fish, made more memorable by a conversation with the owner about the restaurant's history.",
           googleReview3: "A glowing review praised the restaurant's cooking and spectacular service.",
@@ -894,6 +913,31 @@
         updateCarouselControls();
       };
 
+      const advanceReviews = () => {
+        const card = reviewsTrack.querySelector(".review-card");
+        const gap = parseFloat(getComputedStyle(reviewsTrack).gap) || 0;
+        const maxScroll = reviewsTrack.scrollWidth - reviewsTrack.clientWidth;
+        if (maxScroll <= 1) return;
+        const atEnd = reviewsTrack.scrollLeft >= maxScroll - 2;
+        const nextPosition = atEnd ? 0 : Math.min(maxScroll, reviewsTrack.scrollLeft + card.getBoundingClientRect().width + gap);
+        reviewsTrack.scrollTo({ left: nextPosition, behavior: reducedMotion ? "auto" : "smooth" });
+      };
+
+      const syncReviewsAutoplay = () => {
+        const shouldRun = reviewsAutoplayEnabled
+          && reviewsInView
+          && !reviewsPointerInside
+          && !reviewsHasFocus
+          && document.visibilityState !== "hidden"
+          && reviewsTrack.scrollWidth > reviewsTrack.clientWidth + 1;
+        if (shouldRun && !reviewsTimer) {
+          reviewsTimer = window.setInterval(advanceReviews, 5000);
+        } else if (!shouldRun && reviewsTimer) {
+          window.clearInterval(reviewsTimer);
+          reviewsTimer = 0;
+        }
+      };
+
       const applyLanguage = language => {
         currentLanguage = language;
         const copy = translations[language];
@@ -949,19 +993,24 @@
       foodCarousel.querySelector("[data-carousel-next]").addEventListener("click", () => {
         goToCarouselPage(carouselPage + 1, true);
       });
-      const scrollReviews = direction => {
-        const card = reviewsTrack.querySelector(".review-card");
-        const gap = parseFloat(getComputedStyle(reviewsTrack).gap) || 0;
-        const maxScroll = reviewsTrack.scrollWidth - reviewsTrack.clientWidth;
-        const atStart = reviewsTrack.scrollLeft <= 1;
-        const atEnd = reviewsTrack.scrollLeft >= maxScroll - 1;
-        const target = direction > 0 && atEnd ? 0
-          : direction < 0 && atStart ? maxScroll
-          : reviewsTrack.scrollLeft + direction * (card.getBoundingClientRect().width + gap);
-        reviewsTrack.scrollTo({ left: target, behavior: reducedMotion ? "auto" : "smooth" });
-      };
-      reviewsCarousel.querySelector("[data-reviews-previous]").addEventListener("click", () => scrollReviews(-1));
-      reviewsCarousel.querySelector("[data-reviews-next]").addEventListener("click", () => scrollReviews(1));
+      reviewsCarousel.addEventListener("pointerenter", () => {
+        reviewsPointerInside = true;
+        syncReviewsAutoplay();
+      });
+      reviewsCarousel.addEventListener("pointerleave", () => {
+        reviewsPointerInside = false;
+        syncReviewsAutoplay();
+      });
+      reviewsCarousel.addEventListener("focusin", () => {
+        reviewsHasFocus = true;
+        syncReviewsAutoplay();
+      });
+      reviewsCarousel.addEventListener("focusout", event => {
+        if (!reviewsCarousel.contains(event.relatedTarget)) {
+          reviewsHasFocus = false;
+          syncReviewsAutoplay();
+        }
+      });
       carouselToggle.addEventListener("click", () => {
         carouselAutoplayEnabled = !carouselAutoplayEnabled;
         if (carouselAutoplayEnabled) carouselHasFocus = false;
@@ -979,8 +1028,10 @@
       }, { passive: true });
       window.addEventListener("resize", () => {
         window.requestAnimationFrame(() => goToCarouselPage(carouselPage, false));
+        syncReviewsAutoplay();
       }, { passive: true });
       document.addEventListener("visibilitychange", syncCarouselAutoplay);
+      document.addEventListener("visibilitychange", syncReviewsAutoplay);
 
       const closeMenu = () => {
         header.classList.remove("nav-open");
@@ -1026,8 +1077,14 @@
           syncCarouselAutoplay();
         }, { threshold: 0.1 });
         carouselObserver.observe(foodCarousel);
+        const reviewsObserver = new IntersectionObserver(entries => {
+          reviewsInView = entries[0].isIntersecting;
+          syncReviewsAutoplay();
+        }, { threshold: 0.1 });
+        reviewsObserver.observe(reviewsCarousel);
       }
       syncCarouselAutoplay();
+      syncReviewsAutoplay();
 
       if (!reducedMotion && "IntersectionObserver" in window) {
         root.classList.add("motion-ready");
