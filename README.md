@@ -10,4 +10,7 @@ Le cartelle dell'applicazione prenotazioni e i documenti Word non vengono inclus
 
 ## Pubblicazione
 
-Dopo aver creato la repository GitHub e aver inviato il branch `main`, attivare GitHub Pages dalle impostazioni della repository, scegliendo `Deploy from a branch`, branch `main` e cartella `/ (root)`.
+Repository pubblica: https://github.com/YoobeeTM/ristorante-il-delfino-verde  
+Sito online: https://yoobeetm.github.io/ristorante-il-delfino-verde/
+
+Il workflow in `.github/workflows/pages.yml` pubblica automaticamente il sito su GitHub Pages a ogni push sul branch `main`. Per le modifiche future, lavora in questa cartella e invia i commit a `origin/main`.
