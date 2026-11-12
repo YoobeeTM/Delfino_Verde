@@ -88,11 +88,10 @@
       transition: opacity .2s ease;
     }
     .nav-links a:hover { opacity: .7; }
-    .nav-links .nav-cta { padding: 11px 18px; border: 1px solid rgba(255,255,255,.72); }
     .language-toggle {
       display: inline-flex;
-      width: 38px;
-      min-width: 38px;
+      width: 46px;
+      min-width: 46px;
       height: 36px;
       align-items: center;
       justify-content: center;
@@ -100,7 +99,8 @@
       border: 1px solid rgba(255,255,255,.72);
       background: transparent;
       color: var(--white);
-      font: 1.15rem/1 var(--sans);
+      font: 700 .68rem/1 var(--sans);
+      letter-spacing: .04em;
       cursor: pointer;
       transition: background .2s ease, color .2s ease;
     }
@@ -366,7 +366,7 @@
       .brand { gap: 8px; }
       .brand span { font-size: .95rem; }
       .brand small { font-size: .54rem; }
-      .language-toggle { width: 36px; min-width: 36px; height: 36px; }
+      .language-toggle { width: 46px; min-width: 46px; height: 36px; }
       .hero h1 { font-size: clamp(2.8rem, 13vw, 4.1rem); }
       .social-links { gap: 16px; }
     }
@@ -382,11 +382,10 @@
       <nav class="nav-links" id="primary-navigation" aria-label="Navigazione principale" data-i18n-aria="navLabel">
         <a href="#ristorante" data-i18n="navRestaurant">Il ristorante</a>
         <a href="#menu" data-i18n="navMenu">Il menù</a>
-        <a href="#galleria" data-i18n="navKitchen">La cucina</a>
-        <a href="#contatti" class="nav-cta" data-i18n="navLocation">Dove siamo</a>
+        <a href="#contatti" data-i18n="navLocation">Dove siamo</a>
       </nav>
       <div class="header-actions">
-        <button class="language-toggle" type="button" aria-label="Switch to English"><span aria-hidden="true">🇬🇧</span></button>
+        <button class="language-toggle" type="button" aria-label="Switch to English"><span>ENG</span></button>
         <button class="menu-toggle" type="button" aria-label="Apri il menu" aria-controls="primary-navigation" aria-expanded="false">
           <span></span><span></span>
         </button>
@@ -540,7 +539,6 @@
           navLabel: "Navigazione principale",
           navRestaurant: "Il ristorante",
           navMenu: "Il menù",
-          navKitchen: "La cucina",
           navLocation: "Dove siamo",
           menuOpen: "Apri il menu",
           menuClose: "Chiudi il menu",
@@ -600,13 +598,12 @@
           navLabel: "Main navigation",
           navRestaurant: "Our story",
           navMenu: "Menus",
-          navKitchen: "From our kitchen",
           navLocation: "Find us",
           menuOpen: "Open menu",
           menuClose: "Close menu",
           heroImage: "Il Delfino Verde restaurant",
           heroSubtitle: "Fresh seafood, a warm welcome",
-          heroCta: "Explore our menus",
+          heroCta: "Explore our menu",
           introEyebrow: "A story by the sea",
           introTitle: "A Lavagna favourite, right by the sea.",
           introParagraph1: "Long before Lavagna’s marina was built, Il Delfino Verde was already a fixture on the seafront. Today, it remains a local favourite for Ligurian cooking, especially seafood.",
@@ -671,7 +668,7 @@
         document.querySelectorAll("[data-i18n-aria]").forEach(element => {
           element.setAttribute("aria-label", copy[element.dataset.i18nAria]);
         });
-        languageToggle.querySelector("span").textContent = language === "it" ? "🇬🇧" : "🇮🇹";
+        languageToggle.querySelector("span").textContent = language === "it" ? "ENG" : "ITA";
         languageToggle.setAttribute("aria-label", copy.switchLabel);
         menuToggle.setAttribute("aria-label", menuToggle.getAttribute("aria-expanded") === "true" ? copy.menuClose : copy.menuOpen);
       };
