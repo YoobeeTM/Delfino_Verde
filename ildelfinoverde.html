@@ -315,6 +315,26 @@
     .history-grid img { width: 100%; aspect-ratio: 1.12; object-fit: cover; border: 1px solid var(--line); filter: saturate(.82); transition: filter .35s ease, transform .5s ease; }
     .history-grid img:hover { filter: saturate(1); transform: translateY(-4px); }
 
+    .reviews-section { background: var(--navy); }
+    .reviews-layout { display: grid; grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr); align-items: stretch; gap: 24px; }
+    .reviews-summary { display: grid; align-content: start; gap: 12px; }
+    .review-score-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 3px 14px; padding: 18px 20px; border: 1px solid var(--line); color: var(--white); text-decoration: none; transition: border-color .2s ease, background .2s ease; }
+    .review-score-card:hover { border-color: rgba(255,255,255,.72); background: rgba(255,255,255,.04); }
+    .review-platform-name { font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .review-rating { grid-column: 2; grid-row: 1 / span 2; font-family: var(--serif); font-size: 2rem; font-weight: 400; white-space: nowrap; }
+    .review-rating small { color: var(--muted); font: .78rem var(--sans); }
+    .review-count { color: var(--muted); font-size: .78rem; }
+    .review-note { margin: 4px 0 0; color: var(--muted); font-size: .72rem; line-height: 1.6; }
+    .reviews-carousel { min-width: 0; }
+    .review-track { display: flex; gap: 14px; margin: 0; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
+    .review-track::-webkit-scrollbar { display: none; }
+    .review-card { display: flex; flex: 0 0 calc((100% - 14px) / 2); min-height: 250px; flex-direction: column; padding: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.025); scroll-snap-align: start; }
+    .review-card-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 18px; }
+    .review-source { color: var(--white); font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-decoration-color: var(--line); text-underline-offset: 4px; }
+    .review-card-copy { flex: 1; margin: 0 0 22px; color: var(--muted); font-size: .9rem; line-height: 1.7; }
+    .review-card cite { color: var(--white); font-size: .8rem; font-style: normal; font-weight: 700; }
+    .reviews-carousel-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px; }
+
     .visit-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: start; gap: 48px; }
     .visit-copy > p:not(.eyebrow) { color: var(--muted); }
     .visit-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 0; }
@@ -404,6 +424,9 @@
       .intro-grid, .visit-grid { grid-template-columns: 1fr; gap: 36px; }
       .intro-photo { justify-self: center; }
       .map-panel, .visit-copy { text-align: center; }
+      .reviews-layout { grid-template-columns: 1fr; }
+      .reviews-summary { grid-template-columns: 1fr; }
+      .review-card { flex-basis: 88%; min-height: 230px; }
       .map-frame { width: min(100%, 280px); margin-inline: auto; }
       .visit-details { grid-template-columns: 1fr; justify-items: center; }
       .social-box { border-top: 1px solid rgba(255,255,255,.42); border-left: 0; }
@@ -556,6 +579,55 @@
       </div>
     </section>
 
+    <section class="section reviews-section" id="recensioni" aria-labelledby="reviews-title">
+      <div class="wrap">
+        <div class="section-heading reveal">
+          <p class="eyebrow" data-i18n="reviewsEyebrow">Le parole degli ospiti</p>
+          <h2 id="reviews-title" data-i18n="reviewsTitle">Le vostre esperienze</h2>
+          <p data-i18n="reviewsIntro">La cucina, l'accoglienza e i momenti che i nostri ospiti scelgono di ricordare.</p>
+        </div>
+        <div class="reviews-layout">
+          <div class="reviews-summary reveal">
+            <a class="review-score-card" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener">
+              <span class="review-platform-name">Google</span>
+              <strong class="review-rating">4,4 <small>/ 5</small></strong>
+              <span class="review-count" data-i18n="googleReviewCount">538 recensioni</span>
+            </a>
+            <p class="review-note" data-i18n="reviewsNote">Valutazioni e conteggi rilevati a novembre 2026; possono variare. Le schede riportano sintesi, non citazioni letterali.</p>
+          </div>
+          <div class="reviews-carousel reveal" role="region" aria-roledescription="carosello" aria-label="Recensioni dei nostri ospiti" data-i18n-role="reviewsCarouselRole" data-i18n-aria="reviewsCarouselLabel">
+            <div class="review-track" id="review-track">
+              <article class="review-card">
+                <div class="review-card-header">
+                  <a class="review-source" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n-aria="viewGoogleReviews" aria-label="Apri le recensioni su Google">Google ↗</a>
+                </div>
+                <p class="review-card-copy" data-i18n="googleReview1">Una cena apprezzata per il buon cibo, il personale sorridente e il vino della casa; gli ospiti dicono che torneranno.</p>
+                <cite>Eleonora P.</cite>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <a class="review-source" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n-aria="viewGoogleReviews" aria-label="Apri le recensioni su Google">Google ↗</a>
+                </div>
+                <p class="review-card-copy" data-i18n="googleReview2">Una serata all'aperto con pesce fresco, resa ancora più piacevole da una chiacchierata con il proprietario sulla storia del ristorante.</p>
+                <cite>IC</cite>
+              </article>
+              <article class="review-card">
+                <div class="review-card-header">
+                  <a class="review-source" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Delfino+Verde%2C+Piazza+Milano+13%2C+Lavagna&amp;query_place_id=ChIJT82i4myY1BIRwJ10iFVLJR8" target="_blank" rel="noopener" data-i18n-aria="viewGoogleReviews" aria-label="Apri le recensioni su Google">Google ↗</a>
+                </div>
+                <p class="review-card-copy" data-i18n="googleReview3">Un commento entusiasta apprezza la cucina e il servizio spettacolare del ristorante.</p>
+                <cite>Luana A.</cite>
+              </article>
+            </div>
+            <div class="reviews-carousel-controls" role="group" aria-label="Controlli recensioni" data-i18n-aria="reviewsCarouselControls">
+              <button class="carousel-button" type="button" data-reviews-previous aria-label="Recensioni precedenti" data-i18n-aria="previousReviews"><span aria-hidden="true">←</span></button>
+              <button class="carousel-button" type="button" data-reviews-next aria-label="Recensioni successive" data-i18n-aria="nextReviews"><span aria-hidden="true">→</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section visit" id="contatti">
       <div class="wrap visit-grid">
         <div class="map-panel reveal">
@@ -606,6 +678,8 @@
       const foodCarousel = document.querySelector(".food-carousel");
       const foodTrack = document.querySelector(".food-grid");
       const foodSlides = Array.from(foodTrack.querySelectorAll(".food-slide"));
+      const reviewsCarousel = document.querySelector(".reviews-carousel");
+      const reviewsTrack = document.querySelector("#review-track");
       const carouselStatus = foodCarousel.querySelector("[data-carousel-status]");
       const carouselToggle = foodCarousel.querySelector("[data-carousel-toggle]");
       let carouselPage = 0;
@@ -671,6 +745,20 @@
           historyImage2: "Lavagna in una fotografia d'epoca",
           historyImage3: "Una veduta storica di Lavagna",
           historyImage4: "Un ricordo della storia del ristorante",
+          reviewsEyebrow: "Le parole degli ospiti",
+          reviewsTitle: "Le vostre esperienze",
+          reviewsIntro: "La cucina, l'accoglienza e i momenti che i nostri ospiti scelgono di ricordare.",
+          googleReviewCount: "538 recensioni",
+          reviewsNote: "Valutazioni e conteggi rilevati a novembre 2026; possono variare. Le schede riportano sintesi, non citazioni letterali.",
+          reviewsCarouselRole: "carosello",
+          reviewsCarouselLabel: "Recensioni dei nostri ospiti",
+          reviewsCarouselControls: "Controlli recensioni",
+          previousReviews: "Recensioni precedenti",
+          nextReviews: "Recensioni successive",
+          viewGoogleReviews: "Apri le recensioni su Google",
+          googleReview1: "Una cena apprezzata per il buon cibo, il personale sorridente e il vino della casa; gli ospiti dicono che torneranno.",
+          googleReview2: "Una serata all'aperto con pesce fresco, resa ancora più piacevole da una chiacchierata con il proprietario sulla storia del ristorante.",
+          googleReview3: "Un commento entusiasta apprezza la cucina e il servizio spettacolare del ristorante.",
           locationLabel: "Dove siamo",
           mapLink: "Apri la mappa",
           mapFrameTitle: "Mappa interattiva del ristorante Il Delfino Verde a Lavagna",
@@ -736,6 +824,20 @@
           historyImage2: "Lavagna in days gone by",
           historyImage3: "A historic view of Lavagna",
           historyImage4: "A glimpse into the restaurant’s past",
+          reviewsEyebrow: "Guest reviews",
+          reviewsTitle: "Experiences worth sharing",
+          reviewsIntro: "Our cooking, warm welcome and the moments guests choose to remember.",
+          googleReviewCount: "538 reviews",
+          reviewsNote: "Ratings and review counts checked in November 2026; they may change. Cards summarize public reviews rather than quoting them.",
+          reviewsCarouselRole: "carousel",
+          reviewsCarouselLabel: "Guest reviews",
+          reviewsCarouselControls: "Review carousel controls",
+          previousReviews: "Previous reviews",
+          nextReviews: "Next reviews",
+          viewGoogleReviews: "Open Google reviews",
+          googleReview1: "Guests praised the food, smiling staff and house wine, and said they would gladly return.",
+          googleReview2: "A pleasant outdoor dinner with fresh fish, made more memorable by a conversation with the owner about the restaurant's history.",
+          googleReview3: "A glowing review praised the restaurant's cooking and spectacular service.",
           locationLabel: "Find us",
           mapLink: "Open the map",
           mapFrameTitle: "Interactive map of Il Delfino Verde restaurant in Lavagna",
@@ -847,6 +949,19 @@
       foodCarousel.querySelector("[data-carousel-next]").addEventListener("click", () => {
         goToCarouselPage(carouselPage + 1, true);
       });
+      const scrollReviews = direction => {
+        const card = reviewsTrack.querySelector(".review-card");
+        const gap = parseFloat(getComputedStyle(reviewsTrack).gap) || 0;
+        const maxScroll = reviewsTrack.scrollWidth - reviewsTrack.clientWidth;
+        const atStart = reviewsTrack.scrollLeft <= 1;
+        const atEnd = reviewsTrack.scrollLeft >= maxScroll - 1;
+        const target = direction > 0 && atEnd ? 0
+          : direction < 0 && atStart ? maxScroll
+          : reviewsTrack.scrollLeft + direction * (card.getBoundingClientRect().width + gap);
+        reviewsTrack.scrollTo({ left: target, behavior: reducedMotion ? "auto" : "smooth" });
+      };
+      reviewsCarousel.querySelector("[data-reviews-previous]").addEventListener("click", () => scrollReviews(-1));
+      reviewsCarousel.querySelector("[data-reviews-next]").addEventListener("click", () => scrollReviews(1));
       carouselToggle.addEventListener("click", () => {
         carouselAutoplayEnabled = !carouselAutoplayEnabled;
         if (carouselAutoplayEnabled) carouselHasFocus = false;
