@@ -169,7 +169,7 @@
     }
     .hero-logo {
       position: relative;
-      width: min(620px, 88vw);
+      width: min(680px, 88vw);
       aspect-ratio: 1.85;
       overflow: hidden;
       margin-bottom: 32px;
@@ -398,8 +398,10 @@
       .hero-subtitle { max-width: 300px; margin-bottom: 26px; font-size: 1rem; }
       .intro-grid, .visit-grid { grid-template-columns: 1fr; gap: 36px; }
       .intro-photo { justify-self: center; }
-      .map-frame { width: min(100%, 280px); }
-      .visit-details { grid-template-columns: 1fr; }
+      .map-panel, .visit-copy { text-align: center; }
+      .map-frame { width: min(100%, 280px); margin-inline: auto; }
+      .visit-details { grid-template-columns: 1fr; justify-items: center; }
+      .social-box { border-top: 1px solid rgba(255,255,255,.42); border-left: 0; }
       .menu-languages { grid-template-columns: 1fr; gap: 16px; }
       .menu-language { padding: 24px 20px; }
       .menu-language-links { grid-template-columns: 1fr; }
@@ -410,6 +412,7 @@
       .food-grid img { min-height: 150px; }
       .history-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
       .social-links { grid-template-columns: 1fr; }
+      .social-links a { justify-content: center; }
       .footer-row { align-items: flex-start; flex-direction: column; }
     }
 
